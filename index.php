@@ -86,7 +86,7 @@
 		text-shadow:0px 1px 0px #2f6627;
 	}
         .myButton2 {
-        	background-color:#CF0000;
+        	background-color:#A30000;
         	-moz-border-radius:14px;
         	-webkit-border-radius:14px;
         	border-radius:14px;
@@ -99,6 +99,23 @@
 		padding:8px 15px;
 		text-decoration:none;
 		text-shadow:0px 1px 0px #2f6627;
+	}
+        .myButton3 {
+        	background-color:#007A00;
+        	-moz-border-radius:14px;
+        	-webkit-border-radius:14px;
+        	border-radius:14px;
+        	border:1px solid #ffffff;
+        	display:inline-block;
+        	cursor:pointer;
+                color:#ffffff;
+        	font-family:arial;
+        	font-size:14px;
+		padding:8px 15px;
+		text-decoration:none;
+		text-shadow:0px 1px 0px #2f6627;
+                margin-left:30px;
+                width:47.3%
 	}
 	.myButton:hover {
 		background-color:#9c9c9c;
@@ -187,10 +204,18 @@
             </div>
          </div>
       </div>
+            
+
+      <p class="ex2">Upload:</p>
+      <form class="myButton3" action="upload.php" method="post" enctype="multipart/form-data">
+           Select File:
+           <input style="width:100%" name="uploaded_file" type="file"/><br/>
+           <input style="width:100%" type="submit" value="Upload"/>
+       </form>
 
       <div style="background-color:#F2F2F2;">
          <div style="color:#585858; margin:20px; padding:20px;">
-            <p class="ex2">Playlist:</p>            
+            <p class="ex2">Playlist:</p>
             <div id="list"">
                <script type="text/javascript">
                   $('#list').load('list.php',function () {
