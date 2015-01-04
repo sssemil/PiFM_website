@@ -6,7 +6,7 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-path_to_root="/var/www/pifm/"
+path_to_root="/var/www/pifm"
 
 chmod 777 $path_to_root/*
 chmod 777 $path_to_root/*/*
@@ -16,7 +16,7 @@ play_me=$(cat $path_to_root/points/play_me)
 
 while true; do
    echo "$play_me" > $path_to_root/points/current
-   ffmpeg -i "$path_to_root/$play_me" -f s16le -ar 22.05k -ac 1 - | $path_to_root/bin/pifm - $frequency &
+   ffmpeg -i "$path_to_root/playlist/$play_me" -f s16le -ar 22.05k -ac 1 - | $path_to_root/bin/pifm - $frequency &
    pid=$!
 
    trap "kill $pid 2> /dev/null" EXIT
@@ -29,6 +29,9 @@ while true; do
        else
             echo -e "\033[0;32mSomething changed...restarting\033[0m\n"
             killall ffmpeg
+            killall pifm
+            killall ffmpeg
+            killall pifm
             exec $path_to_root/bin/daemon_pifm.sh            
        fi
    done
@@ -50,6 +53,9 @@ while true; do
           else
                echo -e "\033[0;32mSomething changed...restarting\033[0m\n"
                killall ffmpeg
+               killall pifm
+               killall ffmpeg
+               killall pifm
                exec $path_to_root/bin/daemon_pifm.sh
           fi
       done
